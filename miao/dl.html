@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    dl {
+      display: block;
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+    }
+
+    dt {
+      border: 1px solid black;
+      float: left;
+    }
+
+    dt {
+      width: 120px;
+      height: 60px;
+      clear: both;
+      display: inline-block;
+    }
+
+
+    dd {
+      height: 30px;
+      width: 60px;
+      /* position: absolute; */
+      border: 1px solid orangered;
+      float: left;
+    }
+
+    dd:not(.a) {
+      margin-left: 3px;
+    }
+
+    .a {
+      margin-left: 60px;
+    }
+
+    .c .ab {
+      margin-left: 60px;
+    }
+
+    .c .double {
+      width: 120px;
+    }
+
+    dd {
+      display: inline-block;
+      text-align: end;
+      line-height: 98%;
+    }
+  </style>
+</head>
+
+<body>
+  <dl class="c">
+    <dt>
+    <dd class="a"><br>，</dd>
+    <dd><br>，</dd>
+    <dd><br>，</dd>
+    <dd><br>，</dd>
+    <dd><br>，</dd>
+    <dd class="ab"><br>，</dd>
+    <dd><br>，</dd>
+    <dd><br>，</dd>
+    </dt>
+    <dt>
+    <dd class="a"><br>，</dd>
+    <dd class="b"><br>，</dd>
+    <dd><br>，</dd>
+    <dd class="double"><br>，</dd>
+    <dd class="ab"><br>，</dd>
+    <dd><br>，</dd>
+
+    </dt>
+  </dl>
+</body>
+
+</html>

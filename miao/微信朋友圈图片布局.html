@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+      padding: 0;
+      list-style-type: none;
+      margin: 0;
+      width: 300px;
+      height: 500px;
+    }
+
+    ul li {
+      float: left;
+      box-sizing: border-box;
+      border: 1px solid red;
+    }
+
+    ul li::before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+
+    ul li:first-child:last-child {
+      width: 100%;
+    }
+
+    ul li:first-child:nth-last-child(2),
+    ul li:first-child:nth-last-child(2)~li {
+      width: 50%;
+    }
+
+    ul li:first-child:nth-last-child(3),
+    ul li:first-child:nth-last-child(3)~li {
+      width: 33.3%;
+    }
+
+    ul li:first-child:nth-last-child(4),
+    ul li:first-child:nth-last-child(4)~li {
+      width: 50%;
+    }
+
+    ul li:first-child:nth-last-child(n+5),
+    ul li:first-child:nth-last-child(n+5)~li {
+      width: 33.3%;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</body>
+
+</html>

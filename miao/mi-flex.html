@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+      width: 1226px;
+      display: flex;
+      flex-flow: column wrap;
+      padding: 0;
+      height: 614px;
+      justify-content: space-between;
+      align-content: space-between;
+      list-style-type: none;
+      border: 1px solid;
+    }
+
+    li {
+      width: 236px;
+      height: 300px;
+    }
+
+    li:first-child {
+      height: 100%;
+    }
+
+    li:nth-last-child(-n+2) {
+      height: 145px;
+    }
+
+    li:nth-of-type(1) {
+      order: 1;
+    }
+
+    li:nth-of-type(2) {
+      order: 2;
+    }
+
+    li:nth-of-type(6) {
+      order: 3;
+    }
+
+    li:nth-of-type(3) {
+      order: 4;
+    }
+
+    li:nth-of-type(7) {
+      order: 5;
+    }
+
+    li:nth-of-type(4) {
+      order: 6;
+    }
+
+    li:nth-of-type(8) {
+      order: 7;
+    }
+
+    li:nth-of-type(5) {
+      order: 8;
+    }
+
+    li:nth-of-type(9) {
+      order: 9;
+    }
+
+    li:nth-of-type(10) {
+      order: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ul>
+</body>
+
+</html>

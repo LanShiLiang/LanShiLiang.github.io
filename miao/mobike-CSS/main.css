@@ -1,0 +1,120 @@
+   a{
+      text-decoration: none;
+    }
+    ul,li{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      margin: 0;
+    }
+    .hero {
+      height: 798px;
+      position: relative;
+      width: 100%;
+    }
+    .hero>img{
+      position: absolute;
+      z-index: -99;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+    .content{
+      margin: auto;
+      max-width:1080px;
+    }
+    .hero-content {
+      margin: auto;
+      height: 100%;
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+    }
+    .hero-content .left{
+      color: white;
+      font-size: 44px;
+      font-weight: bolder;
+      margin-top: 1rem;
+      height: 50px;
+    }
+    .hero-content .right{
+      margin-top:2rem;
+      display: flex;
+      flex-flow: row;
+      height: 2em ;
+    }
+    .hero-content .right li{
+      width: 85px;
+      height: 80px;
+    }
+    .hero-content ul li a{
+      color: white;
+      text-shadow: 0px 0px 2px black;
+    }
+    .big{
+      display: flex;
+      flex-direction: row;
+      font-size: 68px;
+      color: white;
+      position: relative;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .behind{
+      position: absolute;
+      color: white;
+      top: 100%;
+      font-size: 22px;
+      padding: 14px 26px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 6px;
+      transition: .2s;
+    }
+    .behind:hover{
+      background-color: rgba(0, 0, 0, 1);
+    }
+    .left-center{
+      display: flex;
+      flex-flow: row wrap;
+      position: absolute;
+      left: 0;
+      align-self: center;
+    }
+    /*        enter side         */
+    .hero-bottom ul{
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      margin-left: -2px;
+      margin-right: -2px;
+    }
+    .hero-bottom li{
+      box-sizing: border-box;
+      border: 2px solid white;
+      height: 260px;
+      width: 25%;
+      float: left;
+      position: relative;
+    }
+      .hero-bottom img{
+      object-fit: cover;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .hero-bottom a{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      text-align: center;
+      margin: auto;
+      padding-top: 10%;
+      color: white;
+      font-size: 24px;
+    }

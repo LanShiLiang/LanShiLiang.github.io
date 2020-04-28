@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>radio-slider</title>
+
+  <style>
+    div {
+      width: 300px;
+      border: 1px solid;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    input {
+      display: none;
+    }
+
+    section {
+      font-size: 0px;
+      width: 1200px;
+      height: 300px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    label {
+      font-size: 40px;
+      position: absolute;
+      z-index: -10;
+      user-select: none;
+    }
+
+    label.left {
+      top: 10px;
+      left: 24px;
+    }
+
+    label.right {
+      top: 10px;
+      left: 250px;
+    }
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+
+    input:checked+label,
+    input:checked+label+label {
+      z-index: 1;
+    }
+
+    input#d:checked~section {
+      left: 0px;
+    }
+
+    input#c:checked~section {
+      left: -300px;
+    }
+
+    input#b:checked~section {
+      left: -600px;
+    }
+
+    input#a:checked~section {
+      left: -900px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div>
+    <input type="radio" name="type" id="a">
+    <label for="d" class='right'>></label>
+    <label for="b" class="left">&lt;</label>
+    <input type="radio" name="type" id="b">
+    <label for="a" class='right'>></label>
+    <label for="c" class="left">&lt;</label>
+    <input type="radio" name="type" id="c">
+    <label for="b" class='right'>></label>
+    <label for="d" class="left">&lt;</label>
+    <input type="radio" name="type" checked id="d">
+    <label for="c" class='right'>></label>
+    <label for="a" class="left">&lt;</label>
+
+    <section>
+      <img src="https://via.placeholder.com/400?text=1" alt="">
+      <img src="https://via.placeholder.com/400?text=2" alt="">
+      <img src="https://via.placeholder.com/400?text=3" alt="">
+      <img src="https://via.placeholder.com/400?text=4" alt="">
+    </section>
+  </div>
+</body>
+
+</html>

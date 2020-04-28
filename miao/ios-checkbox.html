@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .check {
+      /* 为了定义新样式，清除原有样式 */
+      -webkit-appearance: none;
+      /* 使其具备块元素属性 */
+      display: inline-block;
+      /* 按钮设置为手型 */
+      cursor: pointer;
+      /* 设置宽度 */
+      width: 270px;
+      /* 设置高度 */
+      height: 150px;
+      /* 为后期加入的伪元素开启定位 */
+      position: relative;
+      border: 5px solid #dfdfdf;
+      /* 设置阴影 */
+      box-shadow: #dfdfdf 0 0 0 0 inset;
+      /* 设置圆角 */
+      border-radius: 150px;
+      /* 设置渐变时间 */
+      transition: 0.3s;
+    }
+
+    /* 定义圆的样式 */
+    .check::before {
+      content: '';
+      width: 130px;
+      height: 130px;
+      /* 脱离文档流 */
+      position: absolute;
+      /* 位置 */
+      top: 4.5px;
+      left: 4px;
+      /* 圆角 */
+      border-radius: 150px;
+      background-color: #fff;
+      /* 阴影效果 */
+      box-shadow: 0 0.5px 2px black;
+    }
+
+    /* 被选中时 */
+    .check:checked {
+      border-color: chartreuse;
+      /* 被选中时阴影效果 */
+
+      box-shadow: 0 0 0 70px chartreuse inset;
+      /* 背景色 */
+      /* background-color: chartreuse; */
+
+    }
+
+    /* 设置选中后圆的偏移 */
+    .check:checked::before {
+      left: 128px;
+      transition: left 0.2s;
+    }
+
+    /* 设置取消选中的动画效果 */
+    .check::before {
+      transition: left 0.3s;
+    }
+
+    /* --------------按钮---------------*/
+    .ra {
+      position: relative;
+    }
+
+    input {
+      display: none;
+    }
+
+    /* 定义radio的边框 */
+    input[name='drone']+label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      box-sizing: border-box;
+      border: 4px black solid;
+      transition: 0.5s;
+      /* 为之后小圆的定位开启相对定位 */
+      position: relative;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* 为span文本样式设置进禁止换行 */
+    * {
+      white-space: nowrap
+    }
+
+    /* 按住按钮阴影扩散效果 */
+    input[name='drone']+label:active {
+      /* border-color: #30f349; */
+      /* box-shadow: 0 0 0 13px rgba(48, 243, 73, 0.4)inset; */
+      /* inset为内部阴影，后边为外部阴影 */
+      box-shadow: 0 0 0px 100px rgba(48, 243, 73, 0.4)inset, 0 0 0px 20px rgba(48, 243, 73, 0.4);
+    }
+
+    /* 按过按钮后的样式 */
+    input:checked+label {
+      border-color: #30f349;
+      transition: 0.5s;
+      color: #30f349;
+    }
+
+    /* 用伪元素设置按钮内小圆样式 */
+    label.dot::before {
+      content: '';
+      width: 0;
+      height: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 9999px;
+      margin: auto;
+      position: absolute;
+      transition: 0.618s;
+    }
+
+    /* 点击按钮后圈内形成直径28px的圆 */
+    input[name='drone']:checked+label::before {
+      width: 28px;
+      height: 28px;
+
+      /* 阴影扩散形成圆 */
+      /* box-shadow: 0 0 0px 13px rgba(48, 243, 73, 1); */
+      /* 正方形削成圆 */
+      /*  width: 26px;
+      height: 26px;
+      left: 8px;
+      top: 8px; */
+
+      background-color: #30f349;
+    }
+
+    span {
+      position: absolute;
+      left: 50px;
+      top: 11px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" class="check">
+  <ul>
+    <div class="ra">
+      <input type="radio" id="ra1" name="drone">
+      <label class="dot" for="ra1"><span>RADIO 1</span>
+      </label>
+    </div>
+    <br><br>
+    <div class="ra">
+      <input type="radio" id="ra2" name="drone">
+      <label for="ra2" class="dot"><span>RADIO 2</span></label>
+    </div>
+    <br><br>
+    <div class="ra">
+      <input type="radio" id="ra3" name="drone">
+      <label for="ra3" class="dot"><span>RADIO 3</span></label>
+    </div>
+  </ul>
+</body>
+
+</html>
