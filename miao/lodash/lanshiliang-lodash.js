@@ -35,7 +35,11 @@ var lanshiliang = {
     }
   },
   isNaN: function (val) {
-    return isNumber(val) && val != +val
+    if (val !== val || isNaN(val)) {
+      return true
+    } else {
+      return false
+    }
   }
 
 
