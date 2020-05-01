@@ -9,9 +9,9 @@ var lanshiliang = {
   /**
    chunk按size分割数组 用slice切割
    */
-  chunk: function (arrary, size) {
+  chunk: function (array, size) {
     size = parseInt(size)
-    let length = arrary == null ? 0 : arrary.length
+    let length = array == null ? 0 : array.length
     if (!length || size < 1) {
       return []
     }
@@ -19,13 +19,48 @@ var lanshiliang = {
     let index = 0
     let resindex = 0
     while (index < length) {
-      result[resindex++] = arrary.slice(index, index += size)
+      result[resindex++] = array.slice(index, index += size)
     }
     return result
   },
+  compact: function (array) {
+    if (!array || !Array.isArray(array) || array.length <= 0) {
+      return [];
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (!!array[i] == false) {
+        array.splice(i, 1)
+      }
+    }
+    return array
+  },
+  concat: function () {
 
+  },
+  difference: function () {
 
+  },
+  differenceBy: function () {
 
+  },
+  drop: function () {
+
+  },
+  dropRight: function () {
+
+  },
+  dropRightWhile: function () {
+
+  },
+  dropWhile: function () {
+
+  },
+  fill: function () {
+
+  },
+  findIndex: function () {
+
+  },
 
   isNull: function (val) {
     if (val === null) {
