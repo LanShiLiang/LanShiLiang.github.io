@@ -65,9 +65,13 @@ var lanshiliang = {
   dropWhile: function () {
 
   },
-  fill: function () {
-
-  },
+  fill: function (array, value, start = 0, end = array.length) {
+    for (start; start < end; start++) {
+      array[start] = value
+    }
+    return array
+  }
+  ,
   findIndex: function () {
 
   },
