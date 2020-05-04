@@ -57,7 +57,7 @@ var lanshiliang = {
     if (array.length <= 0 || !Array.isArray(array) || !array) {
       return []
     }
-    return array.slice(0, array.length - n)
+    return array.length > n ? array.slice(0, array.length - n) : []
   },
   dropRightWhile: function () {
 
