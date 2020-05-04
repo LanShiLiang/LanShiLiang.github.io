@@ -57,8 +57,7 @@ var lanshiliang = {
     if (array.length <= 0 || !Array.isArray(array) || !array) {
       return []
     }
-    n === undefined ? n = 1 : n = parseInt(n)
-    return array.slice(0, -n)
+    return array.slice(0, array.length - n)
   },
   dropRightWhile: function () {
 
