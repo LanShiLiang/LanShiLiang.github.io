@@ -41,7 +41,7 @@ var lanshiliang = {
       return []
     }
     let map = new map();
-    let val = [].concat(...val)
+    val = [].concat(...val)
     val.forEach(n => map[n] = true)
     return array.filter(n => !(n in map))
   },
