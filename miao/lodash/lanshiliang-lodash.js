@@ -40,7 +40,7 @@ var lanshiliang = {
     if (array.length <= 0 || !Array.isArray(array) || !array) {
       return []
     }
-    var map = new map();
+    let map = new Map();
     val = [].concat(...val)
     val.forEach(n => map[n] = true)
     return array.filter(n => !(n in map))
