@@ -72,9 +72,27 @@ var lanshiliang = {
     return array
   }
   ,
-  findIndex: function () {
+  fatten: function () {
 
   },
+  head: function () {
+
+  },
+  indexOf: function () {
+
+  },
+  initial: function () {
+
+  },
+  intersection: function () {
+
+  },
+  join: function () {
+
+  },
+
+
+
 
   isNull: function (val) {
     if (val === null) {
