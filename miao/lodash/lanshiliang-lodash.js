@@ -27,27 +27,38 @@ var lanshiliang = {
     if (!array || !Array.isArray(array) || array.length <= 0) {
       return [];
     }
+    let result = []
     for (let i = 0; i < array.length; i++) {
-      if (!!array[i] == false) {
-        array.splice(i, 1)
+      if (array[i]) {
+        result.push(array[i])
       }
     }
-    return array
+    return result
   },
-  concat: function () {
 
+  difference: function (array, ...val) {
+    if (array.length <= 0 || !Array.isArray(array) || !array) {
+      return []
+    }
+    let map = new map();
+    let val = [].concat(...val)
+    val.forEach(n => map[n] = true)
+    return array.filter(n => !(n in map))
   },
-  difference: function () {
 
+  drop: function (array, n) {
+    if (array.length <= 0 || !Array.isArray(array) || !array) {
+      return []
+    }
+    n === undefined ? n = 1 : n = parseInt(n)
+    return array.slice(n)
   },
-  differenceBy: function () {
-
-  },
-  drop: function () {
-
-  },
-  dropRight: function () {
-
+  dropRight: function (array, n) {
+    if (array.length <= 0 || !Array.isArray(array) || !array) {
+      return []
+    }
+    n === undefined ? n = 1 : n = parseInt(n)
+    return array.slice(0, -n)
   },
   dropRightWhile: function () {
 
