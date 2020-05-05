@@ -72,7 +72,7 @@ var lanshiliang = {
   flatten: function (array) {
     return array.flat(1)
   },
-  flattenDeep: function (array) {
+  flattenDeep: function flattenDeep(array) {
     return [].concat(...array.map(n => Array.isArray(n) ? flattenDeep(n) : n))
   },
   flattenDepth: function (array, depth = 1) {
