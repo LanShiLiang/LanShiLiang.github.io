@@ -78,23 +78,31 @@ var lanshiliang = {
   flattenDepth: function (array, depth = 1) {
     return array.flat(depth)
   },
-  head: function () {
-
+  head: function (array) {
+    let arr = array
+    return arr.shift()
   },
-  indexOf: function () {
-
+  indexOf: function (array, value, fromIndex = 0) {
+    return array.slice(fromIndex).indexOf(value)
   },
-  initial: function () {
-
+  initial: function (array) {
+    return array.slice(0, array.length - 1)
   },
-  intersection: function () {
-
+  intersection: function (...array) {
+    // 二维数组 对象 reduce
+    if (array.length == 1) return array
+    let map = new Map()
+    let result = []
+    array[0].forEach(n => map.set(n, false))
+    for (let i = 1; i < array.length; i++) {
+      array[i].forEach(n => map.has(n) && map.set(n, true))
+    }
+    map.forEach((value, key) => value && result.push(key))
+    return result
   },
-  join: function () {
-
+  join: function (array, separator = ',') {
+    return array.join(separator)
   },
-
-
 
 
   isNull: function (val) {
