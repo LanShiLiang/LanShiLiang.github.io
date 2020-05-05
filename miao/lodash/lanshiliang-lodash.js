@@ -83,7 +83,11 @@ var lanshiliang = {
     return arr.shift()
   },
   indexOf: function (array, value, fromIndex = 0) {
-    return array.slice(fromIndex).indexOf(value)
+    let index = fromIndex >= 0 ? fromIndex : fromIndex + array.length
+    for (let i = index; i < array.length; i++) {
+      if (array[i] == value || array[i] != array[i] && value != value) return i
+    }
+    return -1
   },
   initial: function (array) {
     return array.slice(0, array.length - 1)
