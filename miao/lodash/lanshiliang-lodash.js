@@ -162,28 +162,33 @@ var lanshiliang = {
       if (array[i] >= value) {
         return i
       }
-    }
+    } return array.length
   },
-  sortedIndexOf: function (array, value) {
-    let start = 0;
-    let end = array.length - 1
-    if (array[0] >= value) {
-      return 0
-    } else if (array[end] <= value) {
-      return array.length
-    }
-    while (start < end) {
-      let mid = Math.floor((start + end) / 2)
-      if (array[mid] < value) {
-        start = mid + 1
+  sortedIndexOf: function (arr, key) {
+    let low = 0,
+      high = arr.length - 1;
+    while (low <= high) {
+      let mid = parseInt((high + low) / 2);
+      if (key == arr[mid]) {
+        return mid;
+      } else if (key > arr[mid]) {
+        low = mid + 1;
+      } else if (key < arr[mid]) {
+        high = mid - 1;
       } else {
-        end = mid - 1
+        return -1;
       }
     }
-    return start
   },
-
-
+  sortedLastIndex: function (arr, value) {
+    for (let i = array.length - 1; i > 0; i) {
+      if (arr[i] == value) {
+        return i
+      } else if (array[i] < value) {
+        return i + 1
+      }
+    } return 0
+  },
   isNull: function (val) {
     if (val === null) {
       return true
