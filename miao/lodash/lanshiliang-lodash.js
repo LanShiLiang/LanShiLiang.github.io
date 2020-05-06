@@ -104,6 +104,9 @@ var lanshiliang = {
     map.forEach((value, key) => value && result.push(key))
     return result
   },
+  join: function (array, separator = ',') {
+    return array.join(separator)
+  },
   last: function (array) {
     let arr = array
     return arr.pop()
@@ -160,7 +163,6 @@ var lanshiliang = {
         return i
       }
     }
-    return array.length
   },
   sortedIndexOf: function (array, value) {
     let start = 0;
