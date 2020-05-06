@@ -155,7 +155,7 @@ var lanshiliang = {
     return array
   },
   sortedIndex: function (array, value) {
-    for (let i in array) {
+    for (let i = 0; i < array.length; i++) {
       if (array[i] >= value) {
         return i
       }
