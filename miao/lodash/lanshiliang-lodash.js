@@ -104,8 +104,81 @@ var lanshiliang = {
     map.forEach((value, key) => value && result.push(key))
     return result
   },
-  join: function (array, separator = ',') {
-    return array.join(separator)
+  last: function (array) {
+    let arr = array
+    return arr.pop()
+  },
+  lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+    let arr = array.slice(0, fromIndex + 1)
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (arr[i] == value || arr[i] != arr[i] && value != value)
+        return i
+    }
+    return -1
+  },
+  nth: function (array, n = 0) {
+    if (n >= 0) {
+      return array[n]
+    }
+    return array[array.length + n]
+  },
+  pull: function (array, ...values) {
+    for (let i in values) {
+      if (array.indexOf(values[i]) != -1) {
+        for (let d in array) {
+          if (array[d] == values[i]) [
+            array.splice(d, 1)
+          ]
+        }
+      }
+    }
+    return array
+  },
+  pullAll: function (array, values) {
+    for (let i in values) {
+      if (array.indexOf(values[i]) != -1) {
+        for (let d in array) {
+          if (array[d] == values[i]) [
+            array.splice(d, 1)
+          ]
+        }
+      }
+    }
+    return array
+  },
+  reverse: function (array) {
+    for (let i = 0, j = array.length - 1; i < j; i++, j--) {
+      let cache = array[i]
+      array[i] = array[j]
+      array[j] = cache
+    }
+    return array
+  },
+  sortedIndex: function (array, value) {
+    for (let i in array) {
+      if (array[i] >= value) {
+        return i
+      }
+    }
+    return array.length
+  },
+  sortedIndexOf: function (array, value) {
+    let start = 0;
+    let end = array.length - 1
+    if (array[0] >= value) {
+      return 0
+    } else if (array[end] <= value) {
+      return array.length
+    }
+    while (start < end) {
+      let mid = Math.floor((start + end) / 2)
+      if (array[mid] < value) {
+        start = mid + 1
+      } else {
+        end = mid - 1
+      }
+    }
+    return start
   },
 
 
