@@ -169,6 +169,11 @@ var lanshiliang = {
       high = arr.length - 1;
     while (low <= high) {
       let mid = parseInt((high + low) / 2);
+      while (arr[mid] == key) {
+        if (arr[mid] == arr[mid - 1]) {
+          mid--
+        }
+      }
       if (key == arr[mid]) {
         return mid;
       } else if (key > arr[mid]) {
@@ -180,7 +185,7 @@ var lanshiliang = {
       }
     }
   },
-  sortedLastIndex: function (arr, value) {
+  sortedLastIndex: function (array, value) {
     for (let i = array.length - 1; i > 0; i) {
       if (arr[i] == value) {
         return i
