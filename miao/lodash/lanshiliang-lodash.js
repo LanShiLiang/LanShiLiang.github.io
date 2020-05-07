@@ -164,30 +164,19 @@ var lanshiliang = {
       }
     } return array.length
   },
-  sortedIndexOf: function (arr, key) {
-    let low = 0,
-      high = arr.length - 1;
-    while (low <= high) {
-      let mid = parseInt((high + low) / 2);
-      while (arr[mid] == key) {
-        if (arr[mid] == arr[mid - 1]) {
-          mid--
-        }
-      }
-      if (key == arr[mid]) {
-        return mid;
-      } else if (key > arr[mid]) {
-        low = mid + 1;
-      } else if (key < arr[mid]) {
-        high = mid - 1;
-      } else {
-        return -1;
+  sortedIndexOf: function (array, key) {
+    let start = 0;
+    let end = array.length - 1
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] >= key) {
+        return i
       }
     }
+    return array.length
   },
   sortedLastIndex: function (array, value) {
     for (let i = array.length - 1; i > 0; i) {
-      if (arr[i] == value) {
+      if (array[i] == value) {
         return i
       } else if (array[i] < value) {
         return i + 1
