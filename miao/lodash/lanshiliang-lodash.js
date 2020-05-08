@@ -183,6 +183,16 @@ var lanshiliang = {
       }
     } return 0
   },
+
+  tail: function (Array) {
+    let arr = Array
+    arr.shift()
+    return arr
+  },
+  take: function (Array, n = 1) {
+    let arr = Array
+    return arr.slice(0, n)
+  },
   isNull: function (val) {
     if (val === null) {
       return true
