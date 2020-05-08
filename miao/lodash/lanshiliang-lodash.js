@@ -204,8 +204,17 @@ var lanshiliang = {
     } else {
       return false
     }
+  },
+  pullAt: function (array, idx) {
+    let newArr = []
+    let offSet = 0
+    for (let i in idx) {
+      newArr.push(array[idx[i] - offSet])
+      array.splice(idx[i] - offSet, 1)
+      offSet++
+    }
+    return newArr
   }
-
 
 
 
