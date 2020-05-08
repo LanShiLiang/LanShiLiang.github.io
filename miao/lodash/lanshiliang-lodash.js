@@ -178,8 +178,6 @@ var lanshiliang = {
     for (let i = array.length - 1; i > 0; i = i - 1) {
       if (array[i] == value) {
         return i
-      } else if (array[i] < value) {
-        return i + 1
       }
     } return 0
   },
