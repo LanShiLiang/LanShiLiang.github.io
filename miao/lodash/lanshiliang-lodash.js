@@ -177,7 +177,7 @@ var lanshiliang = {
   sortedLastIndex: function (array, value) {
     for (let i = array.length - 1; i > 0; i = i - 1) {
       if (array[i] == value) {
-        return i
+        return i + 1
       }
     } return 0
   },
@@ -190,6 +190,20 @@ var lanshiliang = {
   take: function (Array, n = 1) {
     let arr = Array
     return arr.slice(0, n)
+  },
+  takeRight: function (array, n = 1) {
+    if (n <= 0) {
+      return []
+    }
+    return array.slice(-n)
+  },
+  union: function (...array) {
+    let key = [].concat(...array)
+    let map = new Map()
+    key.forEach(n => map.set(n, true))
+    let result = []
+    map.forEach((value, key) => value && result.push(key))
+    return result
   },
   isNull: function (val) {
     if (val === null) {
