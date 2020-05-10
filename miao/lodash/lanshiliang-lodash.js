@@ -205,6 +205,13 @@ var lanshiliang = {
     map.forEach((value, key) => value && result.push(key))
     return result
   },
+  uniq: function (array) {
+    let map = new Map()
+    let result = []
+    array.forEach(n => map.set(n, true))
+    map.forEach((value, key) => value && result.push(key))
+    return result
+  },
   isNull: function (val) {
     if (val === null) {
       return true
