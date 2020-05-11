@@ -285,15 +285,7 @@ var lanshiliang = {
     }
     return obj
   },
-  every: function () {
 
-  },
-  filter: function () {
-
-  },
-  find: function () {
-
-  },
   isNull: function (val) {
     if (val === null) {
       return true
