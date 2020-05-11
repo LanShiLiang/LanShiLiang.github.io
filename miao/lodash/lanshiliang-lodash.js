@@ -261,24 +261,23 @@ var lanshiliang = {
     return result
   },
   zip: function (...array) {
-    function (...array) {
-      let arr = [...array]
-      let length = arr[0].length
-      for (let i = 1; i < arr.length; i++) {
-        length = Math.max(length, arr[i].length)
-      }
-      let result = new Array()
-      for (let i = 0; i < length; i++) {
-        result[i] = new Array()
-      }
-      for (let i in result) {
-        for (let d = 0; d < arr.length; d++) {
-          result[i].push(arr[d][i])
-        }
-      }
-      return result
+    let arr = [...array]
+    let length = arr[0].length
+    for (let i = 1; i < arr.length; i++) {
+      length = Math.max(length, arr[i].length)
     }
-  },
+    let result = new Array()
+    for (let i = 0; i < length; i++) {
+      result[i] = new Array()
+    }
+    for (let i in result) {
+      for (let d = 0; d < arr.length; d++) {
+        result[i].push(arr[d][i])
+      }
+    }
+    return result
+  }
+  ,
   zipObject: function (props = [], values = []) {
     let obj = {}
     for (let i in props) {
