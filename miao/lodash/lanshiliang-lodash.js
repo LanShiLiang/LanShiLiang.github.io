@@ -223,7 +223,7 @@ var lanshiliang = {
     }
     for (let i in result) {
       for (let d = 0; d < array.length; d++) {
-        result[i].push(arr[d][i])
+        result[i].push(array[d][i])
       }
     }
     return result
