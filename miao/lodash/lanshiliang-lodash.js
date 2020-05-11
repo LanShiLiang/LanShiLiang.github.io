@@ -212,6 +212,89 @@ var lanshiliang = {
     map.forEach((value, key) => value && result.push(key))
     return result
   },
+  unzip: function (...array) {
+    let arr = [...array]
+    let length = arr[0].length
+    for (let i = 1; i < arr.length; i++) {
+      length = Math.max(length, arr[i].length)
+    }
+    let result = new Array()
+    for (let i = 0; i < length; i++) {
+      result[i] = new Array()
+    }
+    for (let i in result) {
+      for (let d = 0; d < arr.length; d++) {
+        result[i].push(arr[d][i])
+      }
+    }
+    return result
+  },
+  without: function (array, ...values) {
+    let value = [].concat(...values)
+    for (let index = 0; index < value.length; index++) {
+      for (let d = 0; d < array.length; d++) {
+        if (value[index] == array[d]) {
+          array.splice(d, 1)
+          d--
+        }
+      }
+    }
+    return array
+  },
+  xor: function (...array) {
+    let result = []
+    let map = new Map()
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].length; j++) {
+        if (map[array[i][j]]) {
+          map[array[i][j]] = 2
+        } else {
+          map[array[i][j]] = 1
+        }
+      }
+    }
+    for (let index in map) {
+      if (map[index] == 1) {
+        result.push(+index)
+      }
+    }
+    return result
+  },
+  zip: function (...array) {
+    function (...array) {
+      let arr = [...array]
+      let length = arr[0].length
+      for (let i = 1; i < arr.length; i++) {
+        length = Math.max(length, arr[i].length)
+      }
+      let result = new Array()
+      for (let i = 0; i < length; i++) {
+        result[i] = new Array()
+      }
+      for (let i in result) {
+        for (let d = 0; d < arr.length; d++) {
+          result[i].push(arr[d][i])
+        }
+      }
+      return result
+    }
+  },
+  zipObject: function (props = [], values = []) {
+    let obj = {}
+    for (let i in props) {
+      obj[props[i]] = values[i]
+    }
+    return obj
+  },
+  every: function () {
+
+  },
+  filter: function () {
+
+  },
+  find: function () {
+
+  },
   isNull: function (val) {
     if (val === null) {
       return true
