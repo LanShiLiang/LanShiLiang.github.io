@@ -212,18 +212,17 @@ var lanshiliang = {
     map.forEach((value, key) => value && result.push(key))
     return result
   },
-  unzip: function (...array) {
-    let arr = [...array]
-    let length = arr[0].length
-    for (let i = 1; i < arr.length; i++) {
-      length = Math.max(length, arr[i].length)
+  unzip: function (array) {
+    let length = array[0].length
+    for (let i = 1; i < array.length; i++) {
+      length = Math.max(length, array[i].length)
     }
     let result = new Array()
     for (let i = 0; i < length; i++) {
       result[i] = []
     }
     for (let i in result) {
-      for (let d = 0; d < arr.length; d++) {
+      for (let d = 0; d < array.length; d++) {
         result[i].push(arr[d][i])
       }
     }
