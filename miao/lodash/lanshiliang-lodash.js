@@ -220,7 +220,7 @@ var lanshiliang = {
     }
     let result = new Array()
     for (let i = 0; i < length; i++) {
-      result[i] = new Array()
+      result[i] = []
     }
     for (let i in result) {
       for (let d = 0; d < arr.length; d++) {
@@ -268,7 +268,7 @@ var lanshiliang = {
     }
     let result = new Array()
     for (let i = 0; i < length; i++) {
-      result[i] = new Array()
+      result[i] = []
     }
     for (let i in result) {
       for (let d = 0; d < arr.length; d++) {
