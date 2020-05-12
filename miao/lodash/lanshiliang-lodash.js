@@ -308,6 +308,55 @@ var lanshiliang = {
       offSet++
     }
     return newArr
+  },
+  countBy: function (collection, iteratee = _.identity) {
+
+  },
+
+  find: function () {
+
+  },
+  includes: function (collection, value, fromIndex = 0) {
+    if (Array.isArray(collection)) {
+      for (let i = fromIndex; i < collection.length; i++) {
+        if (collection[i] == value) return true
+      } return false
+    }
+    if (typeof (collection) == "string") {
+      let newCol = collection.slice(fromIndex)
+      return newCol.indexOf(value) > -1
+    }
+    if (typeof (collection) == "object") {
+      for (let i in collection) {
+        if (collection[i] == value)
+          return true
+      }
+    }
+    return false
+  },
+  sample: function (collection) {
+    /*返回一个在指定值之间的随机数。这个值不小于 min（有可能等于），并且小于（不等于）max(collection.length)。*/
+    let min = 0
+    let max = collection.length - 1
+    return collection[Math.floor(Math.random() * (max - min)) + min]
+  },
+  size: function () {
+
+  },
+  eq: function () {
+
+  },
+  gt: function () {
+
+  },
+  gte: function () {
+
+  },
+  isArguments: function () {
+
+  },
+  isArray: function () {
+
   }
 
 
