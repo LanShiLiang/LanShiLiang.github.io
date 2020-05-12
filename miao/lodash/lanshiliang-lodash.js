@@ -335,28 +335,42 @@ var lanshiliang = {
     return false
   },
   sample: function (collection) {
-    /*返回一个在指定值之间的随机数。这个值不小于 min（有可能等于），并且小于（不等于）max(collection.length)。*/
+    /*得到一个两数之间的随机整数，包括两个数在内*/
     let min = 0
     let max = collection.length - 1
-    return collection[Math.floor(Math.random() * (max - min)) + min]
+    return collection[Math.trunc(Math.random() * (max - min + 1)) + min]
   },
-  size: function () {
+  size: function (collection) {
+    if (Array.isArray(collection) || typeof (collection) == "string") {
+      return collection.length
+    }
 
+    if (typeof (collection) == "object") {
+      var arr = Object.keys(collection);
+      return arr.length
+    }
   },
-  eq: function () {
-
+  eq: function (value, other) {
+    if (value != value && other != other) {
+      return true
+    }
+    return value === other
   },
-  gt: function () {
-
+  gt: function (value, other) {
+    return value > other
   },
-  gte: function () {
-
+  gte: function (value, other) {
+    return value >= other
   },
-  isArguments: function () {
-
+  isArguments: function (arg) {
+    if (!Array.isArray(arg) && typeof (arg) == 'object' && arg.length != undefined) {
+      return true
+    } return false
   },
-  isArray: function () {
-
+  isArray: function (arr) {
+    if (Array.isArray(arr)) {
+      return true
+    } return false
   }
 
 
