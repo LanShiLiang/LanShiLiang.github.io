@@ -376,13 +376,13 @@ var lanshiliang = {
     } return false
   },
   isBoolean: function (value) {
-    return Object.prototype.toString(value) == '[object Boolean]'
+    return Object.prototype.toString.call(value) == '[object Boolean]'
   },
   isDate: function (value) {
-    return Object.prototype.toString(value) == '[object Boolean]'
+    return Object.prototype.toString.call(value) == '[object Date]'
   },
   isFuncton: function (value) {
-    return Object.prototype.toString(value) == '[object Boolean]'
+    return Object.prototype.toString.call(value) == '[object Function]'
   }
 
 
