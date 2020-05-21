@@ -293,7 +293,10 @@ var lanshiliang = {
     }
   },
   isNaN: function (val) {
-    if (val !== val || isNaN(val)) {
+    if (typeof (val) == 'object') {
+      return val.toString() == 'NaN'
+    }
+    if (val !== val) {
       return true
     } else {
       return false
@@ -371,6 +374,15 @@ var lanshiliang = {
     if (Array.isArray(arr)) {
       return true
     } return false
+  },
+  isBoolean: function (value) {
+    return Object.prototype.toString(value) == '[object Boolean]'
+  },
+  isDate: function (value) {
+    return Object.prototype.toString(value) == '[object Boolean]'
+  },
+  isFuncton: function (value) {
+    return Object.prototype.toString(value) == '[object Boolean]'
   }
 
 
