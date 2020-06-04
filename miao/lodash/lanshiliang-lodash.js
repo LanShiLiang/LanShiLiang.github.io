@@ -411,6 +411,40 @@ var lanshiliang = {
       return true
     } return false
   },
+  isArrayBuffer: function (value) {
+    if (value.constructor === ArrayBuffer) {
+      return true
+    } else {
+      return false
+    }
+  },
+  isArrayLike: function (value) {
+    if (value &&
+      isFinite(value.length) &&
+      value.length >= 0 &&
+      value.length === Math.trunc(value.length)
+    )
+      return true
+    else
+      return false
+  },
+  isArrayLikeObject: function (value) {
+    if (value &&
+      typeof value !== "string" &&
+      isFinite(value.length) &&
+      value.length >= 0 &&
+      value.length === Math.trunc(value.length)
+    )
+      return true
+    else
+      return false
+  },
+  isEmpty: function (value) {
+    if (value.length)
+      return false
+    else
+      return true
+  },
   isBoolean: function (value) {
     return Object.prototype.toString.call(value) == '[object Boolean]'
   },
