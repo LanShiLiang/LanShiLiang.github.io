@@ -375,9 +375,30 @@ var lanshiliang = {
     return result
   },
   cloneDeep: function (value) {
-    let preResult = JSON.stringify(value)
+    /* let preResult = JSON.stringify(value)
     let result = JSON.parse(preResult)
     return result
+  } */
+    let result;
+    if (typeof value == "object") {
+      if (Array.isArray(value)) {
+        for (let i in value) {
+          result[i].push(cloneDeepWith(value[i]))
+        }
+      } else if (value == null) {
+        result = null
+      } else if (target.constructor === RegExp) {
+        result = value
+      } else {
+        result = {}
+        for (let i in target) {
+          result[i] = cloneDeepWith(value[i])
+        }
+      }
+    } else {
+      value = target
+    }
+    return value
   },
   cloneDeepWith: function (value) {
     let result;
@@ -453,6 +474,97 @@ var lanshiliang = {
   },
   isFuncton: function (value) {
     return Object.prototype.toString.call(value) == '[object Function]'
+  },
+  isNumber: function (value) {
+    return value.constructor == Number
+  },
+  isObject: function (value) {
+    return typeof value == "object"
+  },
+  isRegExp: function (value) {
+    return value.constructor == RegExp
+  },
+  isSafeInteger: function (value) {
+    return Number.isSafeInteger(value)
+  },
+  isSet: function (value) {
+    return value.constructor == Set
+  },
+  isString: function (value) {
+    return typeof value == "string"
+  },
+  isSymbol: function (value) {
+    return Object.prototype.toString.call(value) == "[object Symbol]"
+  },
+  isWeakMap: function (value) {
+    return Object.prototype.toString.call(value) == "[object WeakMap]"
+  },
+  isWeakSet: function (value) {
+    return Object.prototype.toString.call(value) == "[object WeakSet]"
+  },
+  isUndefiend: function (value) {
+    return value === undefined
+  },
+  lt: function (value, other) {
+    return value < other
+  },
+  lte: function (value, other) {
+    return value <= other
+  },
+  toArray: function (value) {
+    let result = []
+    for (let i in value) {
+      result.push(value[i])
+    }
+    return result
+  },
+  toFinite: function (value) {
+    const MAX_INTEGER = 1.7976931348623157e+308
+    if (!value) {
+      return value === 0 ? value : 0
+    }
+    value = Number(value)
+    if (value === Infinity || value === -Infinity) {
+      const sign = value < 0 ? -1 : 1
+      return sign * MAX_INTEGER
+    }
+    return value === value ? value : 0
+  },
+  add: function (augend, addend) {
+    return augend + addend
+  },
+  divide: function (dividend, divisor) {
+    return dividend / divisor
+  },
+  max: function (value) {
+    if (!value) {
+      return undefined
+    }
+    let result = -Infinity
+    for (let i = 0; i < value.length; i++) {
+      if (result < value[i]) {
+        result = value[i]
+      }
+    }
+    return result
+  },
+  mean: function (array) {
+    return array.reduce((a, b) => a + b) / array.length
+  },
+  min: function (value) {
+    if (!value) {
+      return undefined
+    }
+    let result = Infinity
+    for (let i = 0; i < value.length; i++) {
+      if (result > value[i]) {
+        result = value[i]
+      }
+    }
+    return result
+  },
+  sum: function (array) {
+    return array.reduce((a, b) => a + b)
   }
 
 
