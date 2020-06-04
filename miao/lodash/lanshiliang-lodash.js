@@ -315,7 +315,12 @@ var lanshiliang = {
   countBy: function (collection, iteratee = _.identity) {
 
   },
-
+  castArray: function (...value) {
+    if (!value.length) {
+      return []
+    }
+    return Array.isArray(value) ? value : [value]
+  },
   find: function () {
 
   },
@@ -364,6 +369,37 @@ var lanshiliang = {
   },
   gte: function (value, other) {
     return value >= other
+  },
+  clone: function (value) {
+    let result = value
+    return result
+  },
+  cloneDeep: function (value) {
+    let preResult = JSON.stringify(value)
+    let result = JSON.parse(preResult)
+    return result
+  },
+  cloneDeepWith: function (value) {
+    let result;
+    if (typeof value == "object") {
+      if (Array.isArray(value)) {
+        for (let i in value) {
+          result[i].push(cloneDeepWith(value[i]))
+        }
+      } else if (value == null) {
+        result = null
+      } else if (target.constructor === RegExp) {
+        result = value
+      } else {
+        result = {}
+        for (let i in target) {
+          result[i] = cloneDeepWith(value[i])
+        }
+      }
+    } else {
+      value = target
+    }
+    return value
   },
   isArguments: function (arg) {
     if (!Array.isArray(arg) && typeof (arg) == 'object' && arg.length != undefined) {
