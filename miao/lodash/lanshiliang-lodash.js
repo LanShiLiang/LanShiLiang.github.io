@@ -67,8 +67,7 @@ var lanshiliang = {
       array[start] = value
     }
     return array
-  }
-  ,
+  },
   flatten: function (array) {
     return array.flat(1)
   },
@@ -375,30 +374,9 @@ var lanshiliang = {
     return result
   },
   cloneDeep: function (value) {
-    /* let preResult = JSON.stringify(value)
+    let preResult = JSON.stringify(value)
     let result = JSON.parse(preResult)
     return result
-  } */
-    let result;
-    if (typeof value == "object") {
-      if (Array.isArray(value)) {
-        for (let i in value) {
-          result[i].push(cloneDeepWith(value[i]))
-        }
-      } else if (value == null) {
-        result = null
-      } else if (target.constructor === RegExp) {
-        result = value
-      } else {
-        result = {}
-        for (let i in target) {
-          result[i] = cloneDeepWith(value[i])
-        }
-      }
-    } else {
-      value = target
-    }
-    return value
   },
   cloneDeepWith: function (value) {
     let result;
@@ -537,7 +515,7 @@ var lanshiliang = {
     return dividend / divisor
   },
   max: function (value) {
-    if (!value) {
+    if (!value || value.length === 0) {
       return undefined
     }
     let result = -Infinity
@@ -548,11 +526,18 @@ var lanshiliang = {
     }
     return result
   },
+  ceil: function (v, p = 0) {
+    if (p === 0) {
+      return Math.ceil(v)
+    } else {
+      return Math.ceil(v * 10 ** p) / 10 ** p
+    }
+  },
   mean: function (array) {
     return array.reduce((a, b) => a + b) / array.length
   },
   min: function (value) {
-    if (!value) {
+    if (!value || value.length === 0) {
       return undefined
     }
     let result = Infinity
@@ -565,11 +550,143 @@ var lanshiliang = {
   },
   sum: function (array) {
     return array.reduce((a, b) => a + b)
+  },
+  property: function (str) {
+    return function (obj) {
+      return obj[str]
+    }
+  },
+  isMatch: function (obj, src) {
+    for (let i in src) {
+      if (src[i] !== obj[i]) {
+        return false
+      }
+    }
+    return true
+  },
+  matches: function (target) {
+    return function (obj) {
+      for (let key in target) {
+        if (obj[key] != target[key]) {
+          return false
+        }
+      }
+      return true
+    }
+  },
+  matchesProperty: function (ary) {
+    return matches(fromPairs(chunk(ary, 2)))
+  },
+  fromPairs: function (ary) {
+    let res = Object.fromEntries(ary) //键值数组转对象
+    return res
+  },
+  filter: function (arr, predicate) {
+    let test = predicate
+    if (typeof predicate === "string") {
+      test = it => it[predicate]
+    } else if (typeof predicate === "object") {
+      if (Array.isArray(predicate)) {
+        obj = fromPairs(predicate)
+      }                //[['active',true],['gender','f']]
+      test = it => {
+        for (let key in predicate) {
+          if (predicate[key] !== it[key]) {
+            return false
+          }
+        }
+        return true
+      }
+    }
+
+    let result = []
+    for (let i = 0; i < arr.length; i++) {
+      if (test(arr[i], i)) {
+        result.push(arr[i])
+      }
+    }
+    return result
+  },
+  before: function (n, func) {
+    let i = 0
+    let result
+    return function (...args) {
+      if (i <= n) {
+        i++
+        result = func(...args)
+      }
+      return result
+    }
+  },
+  after: function (n, func) {
+    let i = 0
+    return function (...args) {
+      i++
+      if (i > n) {
+        return func(...args)
+      }
+    }
+  },
+  ary: function (func, n = func.length) { //[n = func.length] 表示可以不传
+    return function (...args) {
+      return func(...args.slice(0, n))
+    }
+  },
+  unary: function (func) {
+    return function (arg) {
+      return func(arg)
+    }
+  },
+  // unary可以解决map(parseInt)问题 => ['1','2'].map(unary(parseInt))
+  flip: function (func) {
+    return function (...args) {
+      return func(...args.reverse())
+    }
+  },
+  negate: function (predicate) {
+    return function (...args) {
+      return !func(...args)
+    }
+  },
+  reject: function (ary, test) {
+    return filter(ary, negate(test))
+  },
+  every: function (ary, test) {
+    for (let i = 0; i < test.length; i++) {
+      if (!test(test[i])) {
+        return false
+      }
+    }
+    return true
+  },
+  some: function (ary, test) {
+    for (let i = 0; i < test.length; i++) {
+      if (fn(test[i])) {
+        return true
+      }
+    }
+    return false
+  },
+  spread: function (func) {   //优化apply 展开运算符
+    return function (ary) {
+      return func(...ary)
+    }
+  },
+  bind: function (f, ...fiedArgs) {
+    return function bound(...args) {
+      let copy = fixedArgs.slice()
+      let j = 0
+      for (i; i < copy.length; i++) {
+        if (copy[i] === null) {
+          copy[i] = args[j++]
+        }
+      }
+      while (j < args.length) {
+        copy.push(args[j++])
+      }
+      return f(...copy)
+    }
   }
-
-
-
-
 
 
 
