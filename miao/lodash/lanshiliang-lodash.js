@@ -320,7 +320,7 @@ var lanshiliang = {
   countBy: function (collection, iteratee = _.identity) {
     let map = {}
     for (let i in collection) {
-      if (typeof iteratee == "function") {
+      if (typeof (iteratee) == "function") {
         let key = iteratee(collection[i])
         if (map[key] == undefined) { map[key] = 1 }
         map[key]++
@@ -709,8 +709,30 @@ var lanshiliang = {
       }
       return f(...copy)
     }
+  },
+  reduce: function (collection, iteratee = _.identity, accumulator) {
+    let cur = accumulator
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        if (cur == null) {
+          cur = collection[i]
+          continue
+        }
+        cur = iteratee(cur, collection[i])
+      }
+    } else {
+      for (let i in collection) {
+        if (cur == null) {
+          cur = { i: collection[i] }
+          continue
+        }
+        cur = iteratee(cur, collection[i], i)
+      }
+    }
+
+    return cur
+
   }
-  ,
 
 
 
