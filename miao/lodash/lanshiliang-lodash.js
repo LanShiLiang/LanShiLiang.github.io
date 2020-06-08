@@ -283,7 +283,13 @@ var lanshiliang = {
     }
     return obj
   },
-
+  zipObjectDeep: function (props = [], values = []) {
+    let result = {}
+    for (let i in props) {
+      this.set(result, props[i], values[i])
+    }
+    return result
+  },
   isNull: function (val) {
     if (val === null) {
       return true
@@ -312,7 +318,20 @@ var lanshiliang = {
     return newArr
   },
   countBy: function (collection, iteratee = _.identity) {
-
+    let map = {}
+    for (let i in collection) {
+      if (typeof iteratee == "function") {
+        let key = iteratee(collection[i])
+        if (map[key] == undefined) { map[key] = 1 }
+        map[key]++
+      }
+      if (typeof iteratee == "string") {
+        let key = collection[i][iteratee]
+        if (map[key] == undefined) { map[key] = 1 }
+        map[key]++
+      }
+    }
+    return map
   },
   castArray: function (...value) {
     if (!value.length) {
@@ -439,10 +458,10 @@ var lanshiliang = {
       return false
   },
   isEmpty: function (value) {
-    if (value.length)
+    for (let i in value) {
       return false
-    else
-      return true
+    }
+    return true
   },
   isBoolean: function (value) {
     return Object.prototype.toString.call(value) == '[object Boolean]'
@@ -457,7 +476,7 @@ var lanshiliang = {
     return value.constructor == Number
   },
   isObject: function (value) {
-    return typeof value == "object"
+    return Object.prototype.toString.call((value) == "[object Object]")
   },
   isRegExp: function (value) {
     return value.constructor == RegExp
@@ -578,17 +597,22 @@ var lanshiliang = {
     return matches(fromPairs(chunk(ary, 2)))
   },
   fromPairs: function (ary) {
-    let res = Object.fromEntries(ary) //键值数组转对象
+    let res = {}
+    res = Object.fromEntries(ary) //键值数组转对象
     return res
   },
   filter: function (arr, predicate) {
+    let result = []
+    if (Array.isArray(predicate)) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i][predicate[0]] == predicate[1]) result.push(arr[i])
+      }
+      return result
+    }
     let test = predicate
     if (typeof predicate === "string") {
       test = it => it[predicate]
     } else if (typeof predicate === "object") {
-      if (Array.isArray(predicate)) {
-        obj = fromPairs(predicate)
-      }                //[['active',true],['gender','f']]
       test = it => {
         for (let key in predicate) {
           if (predicate[key] !== it[key]) {
@@ -599,7 +623,6 @@ var lanshiliang = {
       }
     }
 
-    let result = []
     for (let i = 0; i < arr.length; i++) {
       if (test(arr[i], i)) {
         result.push(arr[i])
@@ -611,7 +634,7 @@ var lanshiliang = {
     let i = 0
     let result
     return function (...args) {
-      if (i <= n) {
+      if (i < n) {
         i++
         result = func(...args)
       }
@@ -687,7 +710,7 @@ var lanshiliang = {
       return f(...copy)
     }
   }
-
+  ,
 
 
 
