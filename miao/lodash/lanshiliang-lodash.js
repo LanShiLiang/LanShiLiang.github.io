@@ -1,9 +1,9 @@
 var lanshiliang = {
   /**
    *  * 用户名不要以数字开头，以数字开头的同学请至github更改用户名，不用重新注册
-      * 文件名中最好不要包含中划线，如果包含中划线，请将中划线换为下划线然后做为变量名及文件名的前缀
-      * 文件名(<username>-lodash.js)全小写，用户名与'lodash'之间的分隔符为中划线
-      * 文件中的变量名全小写: var foobar = {chunk: function(){}}
+   * 文件名中最好不要包含中划线，如果包含中划线，请将中划线换为下划线然后做为变量名及文件名的前缀
+   * 文件名(<username>-lodash.js)全小写，用户名与'lodash'之间的分隔符为中划线
+   * 文件中的变量名全小写: var foobar = {chunk: function(){}}
    */
 
   /**
@@ -128,7 +128,7 @@ var lanshiliang = {
     for (let i in values) {
       if (array.indexOf(values[i]) != -1) {
         for (let d in array) {
-          if (array[d] == values[i]) [
+          if (array[d] == values[i])[
             array.splice(d, 1)
           ]
         }
@@ -140,7 +140,7 @@ var lanshiliang = {
     for (let i in values) {
       if (array.indexOf(values[i]) != -1) {
         for (let d in array) {
-          if (array[d] == values[i]) [
+          if (array[d] == values[i])[
             array.splice(d, 1)
           ]
         }
@@ -161,7 +161,8 @@ var lanshiliang = {
       if (array[i] >= value) {
         return i
       }
-    } return array.length
+    }
+    return array.length
   },
   sortedIndexOf: function (array, key) {
     let start = 0;
@@ -178,7 +179,8 @@ var lanshiliang = {
       if (array[i] == value) {
         return i + 1
       }
-    } return 0
+    }
+    return 0
   },
 
   tail: function (Array) {
@@ -274,8 +276,7 @@ var lanshiliang = {
       }
     }
     return result
-  }
-  ,
+  },
   zipObject: function (props = [], values = []) {
     let obj = {}
     for (let i in props) {
@@ -322,12 +323,16 @@ var lanshiliang = {
     for (let i in collection) {
       if (typeof (iteratee) == "function") {
         let key = iteratee(collection[i])
-        if (map[key] == undefined) { map[key] = 1 }
+        if (map[key] == undefined) {
+          map[key] = 1
+        }
         map[key]++
       }
       if (typeof iteratee == "string") {
         let key = collection[i][iteratee]
-        if (map[key] == undefined) { map[key] = 1 }
+        if (map[key] == undefined) {
+          map[key] = 1
+        }
         map[key]++
       }
     }
@@ -339,17 +344,46 @@ var lanshiliang = {
     }
     return Array.isArray(value) ? value : [value]
   },
-  find: function () {
-
+  find: function (col, func, idx = 0) {
+    let p = 0
+    for (let i of col) {
+      if (p++ >= idx) {
+        if (Object.prototype.toString.call(func) == "[object Function]") {
+          if (func(i)) {
+            return i
+          }
+        } else if (Object.prototype.toString.call(func) == "[object Array]") {
+          if (i[func[0]] == func[1]) {
+            return i
+          }
+        } else if (Object.prototype.toString.call(func) == "[object Object]") {
+          let tmp = true
+          for (let att in func) {
+            if (func[att] !== i[att]) {
+              tmp = false
+              continue
+            }
+          }
+          if (tmp) {
+            return i
+          }
+        } else {
+          if (i.hasOwnProperty(func)) {
+            return i
+          }
+        }
+      }
+    }
   },
-  includes: function (collection, value, fromIndex = 0) {
+  includes: function (collection, value, Index = 0) {
     if (Array.isArray(collection)) {
-      for (let i = fromIndex; i < collection.length; i++) {
+      for (let i = Index; i < collection.length; i++) {
         if (collection[i] == value) return true
-      } return false
+      }
+      return false
     }
     if (typeof (collection) == "string") {
-      let newCol = collection.slice(fromIndex)
+      let newCol = collection.slice(Index)
       return newCol.indexOf(value) > -1
     }
     if (typeof (collection) == "object") {
@@ -422,12 +456,14 @@ var lanshiliang = {
   isArguments: function (arg) {
     if (!Array.isArray(arg) && typeof (arg) == 'object' && arg.length != undefined) {
       return true
-    } return false
+    }
+    return false
   },
   isArray: function (arr) {
     if (Array.isArray(arr)) {
       return true
-    } return false
+    }
+    return false
   },
   isArrayBuffer: function (value) {
     if (value.constructor === ArrayBuffer) {
@@ -690,7 +726,7 @@ var lanshiliang = {
     }
     return false
   },
-  spread: function (func) {   //优化apply 展开运算符
+  spread: function (func) { //优化apply 展开运算符
     return function (ary) {
       return func(...ary)
     }
@@ -723,7 +759,9 @@ var lanshiliang = {
     } else {
       for (let i in collection) {
         if (cur == null) {
-          cur = { i: collection[i] }
+          cur = {
+            i: collection[i]
+          }
           continue
         }
         cur = iteratee(cur, collection[i], i)
