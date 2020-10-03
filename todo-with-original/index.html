@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="todo-by-original.css">
+
+</head>
+
+<body>
+  <div class="wrap">
+    <h3>todos</h3>
+    <div class="todo-head">
+      <!-- 顶部输入框 -->
+      <input type="checkbox" id="toggle-select-all">
+      <input type="text" id="todo-input" placeholder="要做些什么呢？点我输入完毕按回车即可加入清单~">
+    </div>
+    <!-- 列表 -->
+    <ul id="todo-list" class="all"></ul>
+
+    <!-- 切换状态 -->
+    <div class="state">
+      <span class="left-count">items left</span>
+      <span id="category-select">
+        <label><input type="radio" checked name="selected" value="all">All</label>
+        <label><input type="radio" name="selected" value="active">Active</label>
+        <label><input type="radio" name="selected" value="completed">Completed</label>
+      </span>
+      <button id="clear-completed">clear completed</button>
+    </div>
+  </div>
+  <script src="todo-by-original.js"></script>
+
+
+
+
+</body>
+
+</html>

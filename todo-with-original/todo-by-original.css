@@ -1,0 +1,120 @@
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #f5f5f5;
+  color: #4d4d4d;
+  min-width: 230px;
+  max-width: 550px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.todo-item input[type="text"] {
+  display: none;
+}
+
+/* 内边距设置 */
+.todo-item {
+  padding: 15px 15px 15px 60px;
+}
+
+.todo-head {
+  padding: 16px 16px 16px 60px;
+  border-bottom: 1px solid #ededed;
+
+}
+
+.todo-head input[type="text"] {
+  width: 80%;
+  border-width: 0px;
+  outline: none;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4d4d4d;
+}
+
+.todo-head input[type="text"]::placeholder {
+  color: #d9d9d9;
+  font: 16px Helvetica;
+  font-weight: 300;
+}
+
+/* main部分 */
+.wrap {
+  background: #fff;
+  margin: 130px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* todos标题 */
+.wrap h3 {
+  position: absolute;
+  top: -165px;
+  font-size: 100px;
+  font-weight: 100;
+  padding-left: 20%;
+  color: rgba(175, 47, 47, 0.25);
+  text-align: center;
+}
+
+/* 列表项样式 */
+.todo-item button {
+  display: none;
+}
+
+.todo-item:hover button {
+  display: inline-block;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: #d9d9d9;
+}
+
+.todo-item.editing span {
+  display: none;
+}
+
+.todo-item.editing input[type="text"] {
+  display: inline-block;
+}
+
+ul {
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  padding-top: 0;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 让 .state在list没内容时消失 */
+#todo-list:empty+.state {
+  /* empty内连空格都不能有 否则判断失败 */
+  display: none;
+}
+
+#todo-list li {
+  list-style: none;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+
+ul.completed li:not(.completed) {
+  display: none;
+}
+
+ul.active li.completed {
+  display: none;
+}
+
+.state {
+  padding-left: 25px;
+  padding-bottom: 15px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
