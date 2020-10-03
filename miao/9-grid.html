@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    div {
+      height: 160px;
+      width: 160px;
+      font-size: 0;
+    }
+
+    /* inline-block自适应 */
+    span {
+      font-size: 16px;
+      text-align: center;
+      line-height: 40px;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid black;
+      margin-right: -1px;
+      margin-bottom: -1px;
+      position: relative;
+    }
+
+    span:hover {
+      border: 1px solid red;
+      cursor: pointer;
+      z-index: 8;
+
+    }
+
+    /* 方法2 */
+
+    table {
+      xborder-spacing: 0;
+      border-collapse: collapse;
+    }
+
+    td {
+      text-align: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    tr {
+      border: 5px solid red;
+    }
+
+    col {
+      border: 5px solid red;
+    }
+
+    td:hover {
+      border: 5px solid blue;
+    }
+
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 180px;
+      overflow: hidden;
+      padding-bottom: 5px;
+    }
+
+    li {
+      text-align: center;
+      line-height: 50px;
+      width: 50px;
+      height: 50px;
+      border: 5px solid blue;
+      float: left;
+      margin-right: -5px;
+      margin-bottom: -5px;
+      position: relative;
+    }
+
+    li:hover {
+      border: 5px solid red;
+      z-index: 8;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+  </div>
+  <table>
+    <col>
+    <col>
+    <col>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+    </ul>
+  </table>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    .wrap {
+      background-color: #2064c8;
+      color: white;
+    }
+
+    nav {
+      width: 600th;
+      margin: auto;
+
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      font-size: 0;
+    }
+
+    li {
+      font-size: 12px;
+      display: inline-block;
+      padding: 10px;
+      border-left: 1px solid;
+      /* position: relative; */
+
+    }
+
+    /* 光标悬停样式 */
+    li:hover {
+      background-color: rgb(0, 54, 121);
+    }
+
+    li:last-child {
+      border-right: 1px solid #3774ce;
+    }
+
+    li[data-tip="低价促"]::before {
+      content: '低价促';
+      position: absolute;
+      z-index: 10;
+      background-color: #FF8E00;
+      font-size: 8px;
+      left: 40px;
+      /* top:-6px; */
+      bottom: 30px;
+      white-space: nowrap;
+    }
+
+    /* 伪类制作小标签 */
+    li[data-tip="新升级"]::before {
+      content: '新升级';
+      position: absolute;
+      z-index: 10;
+      background-color: #FF8E00;
+      font-size: 8px;
+      left: 40px;
+      /* top:-6px; */
+      bottom: 30px;
+      white-space: nowrap;
+    }
+
+    li[data-tip]::after {
+      content: '';
+      position: absolute;
+      /* z-index: 10; */
+      /* background-color: #FF8E00; */
+      border: 2px solid #FF8E00;
+      border-color: #FF8E00 transparent transparent #FF8E00;
+      left: 42px;
+      bottom: 26px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav>
+      <ul>
+        <li>首页</li>
+        <li>国内酒店</li>
+        <li data-tip="低价促">海外酒店</li>
+        <li data-tip="新升级">国内国际机票</li>
+        <li>火车票</li>
+        <li>汽车票</li>
+        <li>商旅</li>
+      </ul>
+    </nav>
+  </div>
+</body>
+
+</html>

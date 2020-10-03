@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .sprite {
+      width: 150px;
+      height: 164px;
+      background-repeat: no-repeat;
+      background-image: url(a2.png);
+      animation: frame 500ms steps(1, end) both infinite;
+    }
+
+    input {
+      display: none;
+    }
+
+    @keyframes frame {
+      0% {
+        background-position: -84 0;
+      }
+
+      20% {
+        background-position: -115px 0;
+      }
+
+      40% {
+        background-position: -300px 0;
+      }
+
+      60% {
+        background-position: -532px 0;
+      }
+
+      80% {
+        background-position: -826px 0;
+      }
+
+      100% {
+        background-position: -1101px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sprite"></div>
+  <input type="checkbox" name="" id="up">
+  <label for="up"></label>
+</body>
+
+</html>

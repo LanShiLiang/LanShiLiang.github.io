@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      /* padding: 0; */
+      margin: 0;
+      /* position: relative; */
+    }
+
+    #lead {
+      font-size: 0;
+    }
+
+    * {
+      font-size: initial;
+    }
+
+    .left {
+      background-color: aquamarine;
+      width: 20%;
+      height: 100%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .middle {
+      display: inline-block;
+      height: 100%;
+      width: 56%;
+      background-color: black;
+    }
+
+    .header {
+      display: inline-block;
+      height: 20%;
+      width: 100%;
+      background-color: hotpink;
+    }
+
+    .main {
+      display: inline-block;
+      width: 100%;
+      height: 80%;
+      background-color: aqua;
+
+    }
+
+    .r1 {
+      display: inline-block;
+      background-color: blueviolet;
+      width: 12%;
+      height: 100%;
+      vertical-align: top;
+
+    }
+
+    .r2 {
+      display: inline-block;
+      background-color: yellow;
+      width: 12%;
+      height: 100%;
+      vertical-align: top;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <span id="lead">
+    <span class="left">left</span>
+    <span class="middle">
+      <span class="header">header</span>
+      <span class="main">main</span>
+    </span>
+    <span class="r1">r1</span>
+    <span class="r2">r2</span>
+  </span>
+</body>
+
+</html>

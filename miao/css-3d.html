@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>12/21</title>
+  <style>
+    @keyframes cubic {
+      from {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
+    /*            容器               */
+    .cubic {
+      transform-style: preserve-3d;
+      animation: cubic 5s linear both infinite;
+      position: absolute;
+      top: 320px;
+      left: 300px;
+      width: 200px;
+      height: 200px;
+    }
+
+    .cubic:hover {
+      animation-play-state: paused;
+    }
+
+    /*      每个面       */
+    svg {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+    }
+
+    /*    矩形样式   */
+    rect {
+      stroke-width: 3px;
+      stroke: gray;
+      opacity: 0.5;
+    }
+
+    /* 颜色以及animation值 */
+    #cover1 rect {
+      fill: orange;
+    }
+
+    #cover1 {
+      animation: cover1 2s linear both 1;
+    }
+
+    #cover2 rect {
+      fill: red;
+    }
+
+    #cover2 {
+      animation: cover2 2s linear both 1;
+    }
+
+    #cover3 rect {
+      fill: greenyellow;
+    }
+
+    #cover3 {
+      animation: cover3 2s linear both 1;
+    }
+
+    #cover4 rect {
+      fill: lemonchiffon;
+    }
+
+    #cover4 {
+      animation: cover4 2s linear both 1;
+    }
+
+    #cover5 rect {
+      fill: lightpink;
+    }
+
+    #cover5 {
+      animation: cover5 2s linear both 1;
+    }
+
+    #cover6 rect {
+      fill: paleturquoise;
+    }
+
+    #cover6 {
+      animation: cover6 2s linear both 1;
+    }
+
+    /* 形成立方体 */
+    @keyframes cover1 {
+      to {
+        transform: rotateX(0) translateZ(100px);
+      }
+    }
+
+    @keyframes cover2 {
+      to {
+        transform: rotateX(180deg) translateZ(100px);
+      }
+    }
+
+    @keyframes cover3 {
+      to {
+        transform: rotateX(90deg) translateZ(100px);
+      }
+    }
+
+    @keyframes cover4 {
+      to {
+        transform: rotateX(-90deg) translateZ(100px);
+      }
+    }
+
+    @keyframes cover5 {
+      to {
+        transform: rotateY(90deg) translateZ(100px);
+      }
+    }
+
+    @keyframes cover6 {
+      to {
+        transform: rotateY(-90deg) translateZ(100px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cubic">
+    <!-- 利用矩形做六个面 -->
+    <svg id="cover1">
+      <rect height="200" width="200" />
+    </svg>
+    <svg id="cover2">
+      <rect height="200" width="200" />
+    </svg>
+    <svg id="cover3">
+      <rect height="200" width="200" />
+    </svg>
+    <svg id="cover4">
+      <rect height="200" width="200" />
+    </svg>
+    <svg id="cover5">
+      <rect height="200" width="200" />
+    </svg>
+    <svg id="cover6">
+      <rect height="200" width="200" />
+    </svg>
+  </div>
+</body>
+
+</html>
