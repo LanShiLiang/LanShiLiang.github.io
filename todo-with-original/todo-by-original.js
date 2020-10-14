@@ -6,6 +6,7 @@
     let clearCompletedBtn = document.querySelector('#clear-completed')
     let categorySelect = document.querySelector('#category-select')
 
+    //类别选择
     categorySelect.onclick = e => {
       if (e.target.matches('input')) {
         debugger

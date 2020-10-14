@@ -233,10 +233,13 @@
       z-index: 10;
       transition:  height .5s,z-index 0s 0s,border-width 0s 0s;
     }
-    .container .heaed-nav .nav-pulldown1 a:hover~.pulldown-product{ /* 选择前面有...hover的所有product */
+    .container .heaed-nav .nav-pulldown1 a:hover + .pulldown-product{ /* 选择前面有...hover的所有product */
       z-index: 15;
     }
-
+    /* 下拉框hover的时候优先级最高 */
+    .container .heaed-nav .nav-pulldown1:hover .pulldown-product:hover{
+      z-index: 15;
+    }
     /* ------------------------- */
     .container .heaed-nav li .pulldown-product{
       height: 0px;
