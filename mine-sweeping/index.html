@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .box {
+      display: inline-block;
+      border: 1px solid;
+      box-sizing: border-box;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    #content {
+      width: 350px;
+      height: 320px;
+      margin: 200px auto 20px;
+      font-size: 0px;
+    }
+
+    #btnList {
+      width: 300px;
+      height: 100px;
+      margin: 0 auto;
+    }
+
+    .e1 {
+      background-color: yellowgreen;
+    }
+
+    .e2 {
+      background-color: green;
+    }
+
+    .b1 {
+      background-color: #DAA520;
+    }
+
+    .b2 {
+      background-color: #808000;
+    }
+
+    .w {
+      background-color: red;
+    }
+
+    .taged {
+      background-color: pink;
+    }
+
+    body {
+      background-color: #c0c0c0;
+    }
+
+    #row {
+      margin-left: 16px;
+    }
+
+    #column {
+      margin-left: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <div id="content">
+
+    </div>
+    <div id="btnList">
+      <label for="row">行数<input type="text" name="row" id="row"></label>
+      <br>
+      <label for="column">列数<input type="text" name="column" id="column"></label>
+      <br>
+      <label for="mine">地雷数<input type="text" name="mine" id="mine"></label>
+      <button id='restart'>重新开始</button>
+    </div>
+  </div>
+</body>
+<script>
+  // 扫雷 规则  点击一个位置时 如果当前位置时已经被揭示的则没有反应， 如果是没有展示的 首先会判断是否存在地雷
+  // 如果当前位置存在地雷 那么提示用户游戏结束  如果不存在地雷 那么计算当前点击位置附近雷的个数  如果当前位置附近的雷个数位0则继续递归的进行揭示
+
+  // O O O O O O
+  // O K K K O O
+  // O O K K K K
+  // K O O O O O
+  // K K O O K K
+  // K K K O K O
+
+  // 功能  重新开始  选择方格大小  选择 雷的数量
+
+  class game {
+    constructor(row, column, num) {
+      //初始化
+      this.board = [];
+      this.row = row;
+      this.column = column;
+      this.End = false;
+      this.init(row, column, num);
+    }
+    init(row, column, num) {
+      /**
+       * 初始化 在界面中添加随机情况的地雷
+       * 没有雷且没有被揭示的方格使用字母O表示  带有雷且没有揭示的方格使用字母K表示
+       */
+      this.row = row;
+      this.column = column;
+      this.End = false;
+      this.board = new Array(this.row);
+      for (let i = 0; i < this.row; i++) {
+      //每行每列先填好
+        this.board[i] = new Array(this.column).fill('O');
+      }
+      var count = 0;
+      //添加num个地雷
+      while (count < num) {
+        var randomRow = Math.floor(Math.random() * this.row);
+        var randomColumn = Math.floor(Math.random() * this.column);
+        if (this.board[randomRow][randomColumn] == 'O') {
+          count++;
+          this.board[randomRow][randomColumn] = 'K';
+        }
+      }
+    }
+    /**
+     * 字母B 代表当前位置是已经被点击过的 且附近8个方位都不存在地雷
+     */
+    whenClick(x, y) {
+      if (this.board[x][y] === 'K' || this.board[x][y] === 'X') {
+        this.End = true;
+        this.board[x][y] = 'X';
+      } else if (this.board[x][y] === 'H') {
+
+      } else {
+        this.infect(x, y);
+        var count = 0;
+        for (let i = 0; i < this.row; i++) {
+          for (let j = 0; j < this.column; j++) {
+            if (this.board[i][j] == 'O') count++;
+            if (this.board[i][j] == 'B') {
+              var leftTop = this.calcAround(i - 1, j + 1);
+              var leftBottom = this.calcAround(i - 1, j - 1);
+              var rightTop = this.calcAround(i + 1, j + 1);
+              var rightBottom = this.calcAround(i + 1, j - 1);
+              if (leftTop) {
+                if (this.board[i - 1][j + 1] !== 'H') this.board[i - 1][j + 1] = leftTop;
+              }
+              if (leftBottom) {
+                if (this.board[i - 1][j - 1] !== 'H') this.board[i - 1][j - 1] = leftBottom;
+              }
+              if (rightTop) {
+                if (this.board[i + 1][j + 1] !== 'H') this.board[i + 1][j + 1] = rightTop;
+              }
+              if (rightBottom) {
+                if (this.board[i + 1][j - 1] !== 'H') this.board[i + 1][j - 1] = rightBottom;
+              }
+            }
+          }
+        }
+        if (count == 0) {
+          alert('you win the game')
+        }
+      }
+    }
+    // 点击后触发的递归展开操作
+    infect(x, y) {
+      if (x < 0 || x >= this.row) {
+        return;
+      } else if (y < 0 || y >= this.column) {
+        return;
+      }
+      if (this.board[x][y] !== 'O') return;
+      var count = this.calcAround(x, y);
+      if (count == 0) {
+        this.board[x][y] = 'B';
+        this.infect(x - 1, y);
+        this.infect(x + 1, y);
+        this.infect(x, y - 1);
+        this.infect(x, y + 1);
+      } else {
+        this.board[x][y] = count + '';
+      }
+    }
+    // 计算[x,y] 附近8个方向的雷数 并返回
+    calcAround(x, y) {
+      if (x < 0 || x >= this.row) return 0;
+      if (y < 0 || y >= this.column) return 0
+      var count = 0;
+      for (let i = x - 1; i <= x + 1; i++) {
+        for (let j = y - 1; j <= y + 1; j++) {
+          if (i == x && j == y) continue;
+          if (i < 0 || i >= this.row) continue;
+          if (j < 0 || j >= this.column) continue;
+          if (this.board[i][j] == 'K') {
+            count++;
+          }
+        }
+      }
+      return count;
+    }
+    // 渲染函数根据board上的内容渲染
+    renderToHTML() {
+      // style='width:${width}px ;height:${height}px;
+      var html = '';
+      var width = 320 / this.column;
+      var height = 280 / this.row;
+      for (let i = 0; i < this.row; i++) {
+        for (let j = 0; j < this.column; j++) {
+          if (this.board[i][j] == 'B') {
+            html += `
+                        <div class = 'box ${(i + j) % 2 == 0? 'b1': 'b2' }' style="width: ${width}px; height: ${height}px; "></div>
+                        `
+          } else if (this.board[i][j] == 'K') {
+            html += `
+                        <div class = 'box ${(i + j) % 2 == 0? 'e1': 'e2' }' style="width: ${width}px; height: ${height}px; "></div>
+                        `
+          } else if (this.board[i][j] == 'X') {
+            html += `
+                        <div class = 'box  w' style="width: ${width}px; height: ${height}px; "></div>
+                        `
+          } else if (this.board[i][j] == 'O') {
+            html += `
+                        <div class = 'box ${(i + j) % 2 == 0? 'e1': 'e2' }' style="width: ${width}px; height: ${height}px; "></div>
+                        `
+          } else if (this.board[i][j] == 'H') {
+            html += `
+                        <div class = 'box  taged' style="width: ${width}px; height: ${height}px; "></div>
+                        `
+          } else {
+            html += `
+                        <div class = 'box ${(i + j) % 2 == 0? 'b1': 'b2' }' style="width: ${width}px; height: ${height}px; ">${this.board[i][j]}</div>
+                        `
+          }
+        }
+        html += `
+                    <br>
+                `
+      }
+      return html;
+    }
+  }
+
+
+  var myGame = new game(10, 10, 10);
+  var content = document.querySelector('#content');
+  content.innerHTML = myGame.renderToHTML();
+
+
+  content.addEventListener('click', function (e) {
+    if (e.target.matches('.box')) {
+      var parent = e.target.parentNode;
+      var children = Array.from(parent.children);
+      var idx = children.indexOf(e.target);
+      // 由于每行都会多一个 Br (row + 1 * column)
+      var nodeColumn = idx % (myGame.row + 1);
+      var nodeRow = Math.floor(idx / (myGame.row + 1));
+      myGame.whenClick(nodeRow, nodeColumn);
+      // 重新渲染
+      content.innerHTML = myGame.renderToHTML();
+      if (myGame.End) {
+        alert('Game is over');
+      }
+    }
+  })
+
+  // 自定义游戏事件
+  var inputOfRow = document.querySelector('#row');
+  var inputOfColumn = document.querySelector('#column');
+  var inputOfMine = document.querySelector('#mine');
+
+  var restartBtn = document.querySelector('#restart');
+  restartBtn.addEventListener('click', function (e) {
+    var row = Number(inputOfRow.value) || myGame.row;
+    var column = Number(inputOfColumn.value) || myGame.column;
+    var mime = Number(inputOfMine.value) || (row * column / 4);
+    if (mime >= row * column) {
+      // 提示用户输入错误
+    } else {
+      myGame.init(row, column, mime);
+      content.innerHTML = myGame.renderToHTML();
+    }
+  })
+
+
+  content.addEventListener('contextmenu', function (e) {
+    if (e.target.matches('.box')) {
+      e.preventDefault();
+      // var node = e.target;
+      // if(node.classList.contains('taged')){
+      //     node.classList.remove('taged');
+      // }else{
+      //     node.classList.add('taged');
+      // }
+
+      // var parent = e.target.parentNode;
+      // var children = Array.from(parent.children);
+      // var idx = children.indexOf(e.target);
+      // // 由于每行都会多一个 Br (row + 1 * column)
+      // var nodeColumn = idx % (myGame.row + 1);
+      // var nodeRow = Math.floor( idx / (myGame.row + 1));
+      // console.log(nodeColumn, nodeRow)
+      // myGame.board[nodeRow][nodeColumn] = 'H';
+      // 重新渲染
+      // content.innerHTML = myGame.renderToHTML();
+
+    }
+  })
+</script>
+
+</html>
