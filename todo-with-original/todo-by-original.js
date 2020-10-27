@@ -9,7 +9,6 @@
     //类别选择
     categorySelect.onclick = e => {
       if (e.target.matches('input')) {
-        debugger
         console.log(e)
         //删除原先类名再添加目前选中的类名
         todoList.classList.remove('all', 'active', 'completed')
