@@ -4,11 +4,13 @@
 
 * 下方的按钮可以让清单在不同状态展示不同的结果
 
+* 点击生成的代办事项，可以对其进行编辑
+
   
 
 ### 关于
 
-仅使用原生的js和css
+原生的js和css
 
 [点我使用](https://lanshiliang.github.io/todo-with-original/)
 
