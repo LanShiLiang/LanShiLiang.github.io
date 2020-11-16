@@ -127,7 +127,7 @@
 
         let deleteBtn = document.createElement('button')
         deleteBtn.textContent = 'x'
-        //删除条目
+        //删除某条目
         deleteBtn.onclick = e => {
           todoList.removeChild(li)
           setSelectAllAndLeftCountAndClearBtn()
